@@ -43,10 +43,8 @@ namespace VigenereCipherWeb.Models
 
         public const string alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
 
-        [Required(ErrorMessage = "Введите ваш текст")]
-        public string Text { get; set; }
-        [Required(ErrorMessage = "Введите ваш ключ")]
-        public string Key { get; set; }
+        public string Text { get; set; } 
+        public string Key { get; set; } 
         public bool IsEncrypt { get; set; }
         public string Result { get; set; }
     }

@@ -8,8 +8,8 @@
     <hr />
 </div>
 
-<div clas="row">
-    <div class="col-6">
+<div clas="row flex-row flex-nowrap">
+    <div class="col-8">
         <div class="card">
             <div class="card-heade">
 
@@ -34,8 +34,9 @@
 
                     <div class="mb-3">
                         <label class="form-label" asp-for=IsEncrypt>Расшифровать</label>                        
-                        <input type="radio" id="IsEncrypt" name="IsEncrypt" value="false" />
-                    
+                        <input type="radio" id="IsEncrypt" name="IsEncrypt" value="false" checked />
+                    </div>
+                    <div>
                         <label class="form-label" asp-for=IsEncrypt>Зашифровать</label>                        
                         <input type="radio" id="IsEncrypt" name="IsEncrypt" value="true" />
                     </div>

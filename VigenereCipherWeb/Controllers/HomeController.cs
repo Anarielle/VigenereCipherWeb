@@ -36,6 +36,7 @@ namespace VigenereCipherWeb.Controllers
             {
                 cipher.Result = Decrypt(getData);
             }
+
             return RedirectToAction(nameof(Index));
         }
 
