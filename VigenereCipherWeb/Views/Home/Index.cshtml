@@ -1,0 +1,54 @@
+﻿@model Cipher
+@{
+    ViewData["Title"] = "Шифр Виженера";
+}
+
+<div class="text-left">
+    <h1 class="display-4">Шифр Виженера</h1>
+    <hr />
+</div>
+
+<div clas="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-heade">
+
+            </div>
+
+            <div class="card-body">
+                <form asp-controller="Home" asp-action="Crypt" method="post">
+                    <div class="mb-3">
+                        <label class="form-label" asp-for=Text>Исходный текст</label>
+                        <input asp-for=Text type="text" class="form-control"/>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" asp-for=Key>Ключ</label>
+                        <input asp-for=Key type="text" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" asp-for=Result>Преобразованный текст</label>
+                        <input asp-for=Result type="text" class="form-control" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" asp-for=IsEncrypt>Расшифровать</label>                        
+                        <input type="radio" id="IsEncrypt" name="Cipher" value="true" />
+                    
+                        <label class="form-label" asp-for=IsEncrypt>Зашифровать</label>                        
+                        <input type="radio" id="IsEncrypt" name="Cipher" value="true" />
+                    </div>
+
+                    <div>
+                        <button type="submit" class="btn btn-primary">Преобразовать</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
