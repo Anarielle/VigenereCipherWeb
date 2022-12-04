@@ -8,48 +8,35 @@
     <hr />
 </div>
 
-<div clas="row flex-row flex-nowrap">
-    <div class="col-8">
-        <div class="card">
-            <div class="card-heade">
 
-            </div>
+            <form asp-controller="Home" asp-action="Crypt" method="post">
+                <div class="mb-3">
+                    <label for="Text">Исходный текст</label>
+                    <textarea class="form-control" type="text" rows="3" id="Text" asp-for=Text class="form-control"></textarea>
+                </div>
 
-            <div class="card-body">
-                <form asp-controller="Home" asp-action="Crypt" method="post">
-                    <div class="mb-3">
-                        <label class="form-label" asp-for=Text>Исходный текст</label>
-                        <input asp-for=Text type="text" class="form-control"/>
+                <div class="mb-3">
+                    <label class="form-label" asp-for=Key>Ключ</label>
+                        <input type="text" asp-for=Key  class="form-control" />
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label" asp-for=Key>Ключ</label>
-                        <input asp-for=Key type="text" class="form-control" />
+                        <label for="Result">Преобразованный текст</label>
+                        <textarea class="form-control" type="text" rows="3" id="Result" asp-for=Result  class="form-control" readonly></textarea>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label" asp-for=Result>Преобразованный текст</label>
-                        <input asp-for=Result type="text" class="form-control" />
-                    </div>
-
-                    <div class="mb-3">
+                    <div class="form-check form-check-inline">
                         <label class="form-label" asp-for=IsEncrypt>Расшифровать</label>                        
                         <input type="radio" id="IsEncrypt" name="IsEncrypt" value="false" checked />
                     </div>
-                    <div>
+
+                    <div class="form-check form-check-inline">
                         <label class="form-label" asp-for=IsEncrypt>Зашифровать</label>                        
                         <input type="radio" id="IsEncrypt" name="IsEncrypt" value="true" />
                     </div>
 
-                    <div>
-                        <button type="submit" class="btn btn-primary">Преобразовать</button>
+                    <div class="pt-3 pb-3">
+                        <button class="btn btn-primary" type="submit">Преобразовать</button>
                     </div>
-                </form>
-            </div>
+            </form>  
 
-            <div class="card-footer">
-
-            </div>
-        </div>
-    </div>
-</div>
