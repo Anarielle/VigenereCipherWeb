@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Diagnostics;
 using System.Security.Cryptography.Xml;
 using VigenereCipherWeb.Models;

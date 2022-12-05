@@ -42,8 +42,8 @@ namespace VigenereCipherWeb.Models
         };
 
         public const string alphabet = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
-
-        public string Text { get; set; } 
+        
+        public string Text { get; set; }
         public string Key { get; set; } 
         public bool IsEncrypt { get; set; }
         public string Result { get; set; }
