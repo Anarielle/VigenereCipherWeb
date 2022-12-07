@@ -2,7 +2,7 @@
 
 namespace VigenereCipherWeb.Models
 {
-    public class Cipher
+    public class CipherViewModel
     {
         public readonly string[] vigenerSquare =
         {

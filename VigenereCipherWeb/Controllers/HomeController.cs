@@ -18,14 +18,14 @@ namespace VigenereCipherWeb.Controllers
             _logger = logger;
         }
 
-        private static Cipher cipher = new Cipher();
+        private static CipherViewModel cipher = new CipherViewModel();
 
         public IActionResult Index()
         {
             return View(cipher);
         }
 
-        public IActionResult Crypt(Cipher getData)
+        public IActionResult Crypt(CipherViewModel getData)
         {
             cipher.Text = getData.Text;
             cipher.Key = getData.Key;
@@ -42,7 +42,7 @@ namespace VigenereCipherWeb.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private static string Encrypt(Cipher cipher)
+        private static string Encrypt(CipherViewModel cipher)
         {
             string[] textArr = cipher.Text.Split(' ');
             int row;
@@ -53,7 +53,7 @@ namespace VigenereCipherWeb.Controllers
 
             foreach (var item in cipher.Key)
             {
-                if (Cipher.alphabet.Contains(Char.ToLower(item)))
+                if (cipher.alphabet.Contains(Char.ToLower(item)))
                 {
                     newKey.Append(item);
                 }
@@ -64,10 +64,10 @@ namespace VigenereCipherWeb.Controllers
                 char[] word = textArr[i].ToCharArray();
                 for (int j = 0; j < word.Length; j++)
                 {
-                    if (Cipher.alphabet.Contains(Char.ToLower(word[j])))
+                    if (cipher.alphabet.Contains(Char.ToLower(word[j])))
                     {
-                        collumn = Cipher.alphabet.IndexOf(Char.ToLower(word[j]));
-                        row = Cipher.alphabet.IndexOf(Char.ToLower(newKey.ToString()[countLength % newKey.ToString().Length]));
+                        collumn = cipher.alphabet.IndexOf(Char.ToLower(word[j]));
+                        row = cipher.alphabet.IndexOf(Char.ToLower(newKey.ToString()[countLength % newKey.ToString().Length]));
                         if (char.IsUpper(word[j]))
                         {
                             newText.Append(Char.ToUpper(cipher.vigenerSquare[row][collumn]));
@@ -92,7 +92,7 @@ namespace VigenereCipherWeb.Controllers
             return newText.ToString();
         }
 
-        private static string Decrypt(Cipher cipher)
+        private static string Decrypt(CipherViewModel cipher)
         {
             string[] textArr = cipher.Text.Split(' ');
             int row;
@@ -103,7 +103,7 @@ namespace VigenereCipherWeb.Controllers
 
             foreach (var item in cipher.Key)
             {
-                if (Cipher.alphabet.Contains(Char.ToLower(item)))
+                if (cipher.alphabet.Contains(Char.ToLower(item)))
                 {
                     newKey.Append(item);
                 }
@@ -114,17 +114,17 @@ namespace VigenereCipherWeb.Controllers
                 char[] word = textArr[i].ToCharArray();
                 for (int j = 0; j < word.Length; j++)
                 {
-                    if (Cipher.alphabet.Contains(Char.ToLower(word[j])))
+                    if (cipher.alphabet.Contains(Char.ToLower(word[j])))
                     {
-                        row = Cipher.alphabet.IndexOf(Char.ToLower(newKey.ToString()[countLength % newKey.ToString().Length]));
+                        row = cipher.alphabet.IndexOf(Char.ToLower(newKey.ToString()[countLength % newKey.ToString().Length]));
                         collumn = cipher.vigenerSquare[row].IndexOf(Char.ToLower(word[j]));
                         if (char.IsUpper(word[j]))
                         {
-                            newText.Append(Char.ToUpper(Cipher.alphabet[collumn]));
+                            newText.Append(Char.ToUpper(cipher.alphabet[collumn]));
                         }
                         else
                         {
-                            newText.Append(Char.ToLower(Cipher.alphabet[collumn]));
+                            newText.Append(Char.ToLower(cipher.alphabet[collumn]));
                         }
                         countLength++;
                     }
