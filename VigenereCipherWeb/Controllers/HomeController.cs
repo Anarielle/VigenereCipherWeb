@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Diagnostics;
 using System.Security.Cryptography.Xml;
+using System.Text;
 using VigenereCipherWeb.Models;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -47,17 +48,17 @@ namespace VigenereCipherWeb.Controllers
             int row;
             int collumn;
             int countLength = 0;
-            string newText = "";
-            string newKey = "";
+            StringBuilder newText = new StringBuilder();
+            StringBuilder newKey = new StringBuilder();
 
             foreach (var item in cipher.Key)
             {
                 if (Cipher.alphabet.Contains(Char.ToLower(item)))
                 {
-                    newKey += item;
+                    newKey.Append(item);
                 }
             }
-
+            
             for (int i = 0; i < textArr.Length; i++)
             {
                 char[] word = textArr[i].ToCharArray();
@@ -66,29 +67,29 @@ namespace VigenereCipherWeb.Controllers
                     if (Cipher.alphabet.Contains(Char.ToLower(word[j])))
                     {
                         collumn = Cipher.alphabet.IndexOf(Char.ToLower(word[j]));
-                        row = Cipher.alphabet.IndexOf(Char.ToLower(newKey[countLength % newKey.Length]));
+                        row = Cipher.alphabet.IndexOf(Char.ToLower(newKey.ToString()[countLength % newKey.ToString().Length]));
                         if (char.IsUpper(word[j]))
                         {
-                            newText += Char.ToUpper(cipher.vigenerSquare[row][collumn]);
+                            newText.Append(Char.ToUpper(cipher.vigenerSquare[row][collumn]));
                         }
                         else
                         {
-                            newText += Char.ToLower(cipher.vigenerSquare[row][collumn]);
+                            newText.Append(Char.ToLower(cipher.vigenerSquare[row][collumn]));
                         }
                         countLength++;
                     }
                     else
                     {
-                        newText += word[j];
+                        newText.Append(word[j]);
                     }
                 }
                 if (i != textArr.Length - 1)
                 {
-                    newText += ' ';
+                    newText.Append(' ');
                 }
             }
 
-            return newText;
+            return newText.ToString();
         }
 
         private static string Decrypt(Cipher cipher)
@@ -97,14 +98,14 @@ namespace VigenereCipherWeb.Controllers
             int row;
             int collumn;
             int countLength = 0;
-            string newText = "";
-            string newKey = "";
+            StringBuilder newText = new StringBuilder();
+            StringBuilder newKey = new StringBuilder();
 
             foreach (var item in cipher.Key)
             {
                 if (Cipher.alphabet.Contains(Char.ToLower(item)))
                 {
-                    newKey += item;
+                    newKey.Append(item);
                 }
             }
 
@@ -115,29 +116,29 @@ namespace VigenereCipherWeb.Controllers
                 {
                     if (Cipher.alphabet.Contains(Char.ToLower(word[j])))
                     {
-                        row = Cipher.alphabet.IndexOf(Char.ToLower(newKey[countLength % newKey.Length]));
+                        row = Cipher.alphabet.IndexOf(Char.ToLower(newKey.ToString()[countLength % newKey.ToString().Length]));
                         collumn = cipher.vigenerSquare[row].IndexOf(Char.ToLower(word[j]));
                         if (char.IsUpper(word[j]))
                         {
-                            newText += Char.ToUpper(Cipher.alphabet[collumn]);
+                            newText.Append(Char.ToUpper(Cipher.alphabet[collumn]));
                         }
                         else
                         {
-                            newText += Char.ToLower(Cipher.alphabet[collumn]);
+                            newText.Append(Char.ToLower(Cipher.alphabet[collumn]));
                         }
                         countLength++;
                     }
                     else
                     {
-                        newText += word[j];
+                        newText.Append(word[j]);
                     }
                 }
                 if (i != textArr.Length - 1)
                 {
-                    newText += ' ';
+                    newText.Append(' ');
                 }
             }
-            return newText;
+            return newText.ToString();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
